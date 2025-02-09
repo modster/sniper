@@ -1,7 +1,5 @@
-import "./App.css"
-import React from "react"
 import { Canvas } from "@react-three/fiber"
-import { BackSide, TextureLoader, Color } from "three"
+// import "./App.css"
 import {
     Stars,
     Environment,
@@ -10,34 +8,29 @@ import {
 } from "@react-three/drei"
 
 function App() {
-    // const texture = new TextureLoader().load(
-    //     "../public/public/2k_earth_nightmap.jpg"
-    // )
-
     return (
-        <Canvas camera={{ position: [1, 0, 0], fov: 50 }}>
-            <ambientLight intensity={0.1} />
-            <Environment preset="city" />
-            <Stars
-                radius={100}
-                depth={50}
-                count={5000}
-                factor={4}
-                saturation={0}
-                fade
-                speed={1}
-            />
-            <OrbitControls />
-        </Canvas>
-        /* <ContactShadows frames={1} scale={5} position={[0, -1, 0]} far={1} blur={5} opacity={0.5} color="#204080" /> */
-        /*  */
-
-        /*   <OrbitControls /> */
-        // </Canvas>
+        <div style={{ height: "100vh", width: "100vw" }}>
+            <Canvas camera={{ position: [0, 5, 0], fov: 50 }}>
+                <Environment preset="night" />
+                <ambientLight intensity={0.5} />
+                {/* <pointLight position={[10, 10, 10]} /> */}
+                <Stars
+                    radius={100}
+                    depth={50}
+                    count={5000}
+                    factor={3}
+                    saturation={1}
+                    fade={1}
+                    speed={0.2}
+                />
+                <mesh scale={1}>
+                    <sphereGeometry args={[1, 64, 64]} />
+                    <meshStandardMaterial color="blue" />
+                </mesh>
+                <OrbitControls />
+            </Canvas>
+        </div>
     )
 }
 
-/**
- * @exports App
- */
 export default App
