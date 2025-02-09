@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+import React from "react"
+import { Canvas } from "@react-three/fiber"
+import { BackSide, TextureLoader, Color } from "three"
+import {
+    Stars,
+    Environment,
+    OrbitControls,
+    ContactShadows,
+} from "@react-three/drei"
 
 function App() {
-  const [count, setCount] = useState(0)
+    // const texture = new TextureLoader().load(
+    //     "../public/public/2k_earth_nightmap.jpg"
+    // )
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Canvas camera={{ position: [1, 0, 0], fov: 50 }}>
+            <ambientLight intensity={0.1} />
+            <Environment preset="city" />
+            <Stars
+                radius={100}
+                depth={50}
+                count={5000}
+                factor={4}
+                saturation={0}
+                fade
+                speed={1}
+            />
+            <OrbitControls />
+        </Canvas>
+        /* <ContactShadows frames={1} scale={5} position={[0, -1, 0]} far={1} blur={5} opacity={0.5} color="#204080" /> */
+        /*  */
+
+        /*   <OrbitControls /> */
+        // </Canvas>
+    )
 }
 
+/**
+ * @exports App
+ */
 export default App
